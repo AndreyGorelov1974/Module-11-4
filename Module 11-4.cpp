@@ -63,11 +63,10 @@ X.O
 #include <string>
 
 std::string enter_line(int n) {
-	std::string str;
 	std::cout << "Enter the line number" << n << ": ";
 	std::cin >> str;
 	while (str.length() != 3) {
-		std::cout << "Длина строки должна быть 3 символа. Введите снова: ";
+		std::cout << "The length of the string must be 3 characters. Enter again: ";
 		std::cin >> str;
 	}
 	return str;
