@@ -58,3 +58,14 @@ X.O
 нолики и крестики победили несколько раз;
 на поле есть невалидные символы.
 Для упрощения лучше создать отдельные функции для проверки победителя в строке или столбце, которые на вход принимают строку, а на выходе выдают символ победителя. То есть ‘X’, ‘O’ или ‘.’*/
+
+#include <iostream>
+#include <string>
+
+int main() {
+	std::string IPAddress;
+	std::cout << "Enter IP address: ";
+	std::cin >> IPAddress;
+
+	std::cout << (check_IP(IPAddress) ? "Valid" : "Invalid");
+}
