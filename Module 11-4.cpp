@@ -63,6 +63,7 @@ X.O
 #include <string>
 
 std::string enter_line(int n) {
+	std::string str;
 	std::cout << "Enter the line number" << n << ": ";
 	std::cin >> str;
 	while (str.length() != 3) {
