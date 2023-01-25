@@ -62,10 +62,22 @@ X.O
 #include <iostream>
 #include <string>
 
-int main() {
-	std::string IPAddress;
-	std::cout << "Enter IP address: ";
-	std::cin >> IPAddress;
+std::string enter_line(std::string str, int n) {
+	std::cout << "Enter the line number" << n << ": ";
+	std::cin >> str;
+	while (str.length() != 3) {
+		std::cout << "Длина строки должна быть 3 символа. Введите снова: ";
+		std::cin >> str;
+	}
+	return str;
+}
 
-	std::cout << (check_IP(IPAddress) ? "Valid" : "Invalid");
+
+int main() {
+
+	std::string firstLine = enter_line(firstLine, 1);
+	std::string secondLine = enter_line(secondLine, 2);
+	std::string thirdLine = enter_line(thirdLine, 3);
+
+
 }
