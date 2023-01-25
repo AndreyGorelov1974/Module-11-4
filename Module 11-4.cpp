@@ -62,7 +62,7 @@ X.O
 #include <iostream>
 #include <string>
 
-std::string enter_line(std::string str, int n) {
+std::string enter_line(int n) {
 	std::cout << "Enter the line number" << n << ": ";
 	std::cin >> str;
 	while (str.length() != 3) {
@@ -75,9 +75,9 @@ std::string enter_line(std::string str, int n) {
 
 int main() {
 
-	std::string firstLine = enter_line(firstLine, 1);
-	std::string secondLine = enter_line(secondLine, 2);
-	std::string thirdLine = enter_line(thirdLine, 3);
+	std::string firstLine = enter_line(1);
+	std::string secondLine = enter_line(2);
+	std::string thirdLine = enter_line(3);
 
 
 }
