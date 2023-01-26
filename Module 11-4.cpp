@@ -62,7 +62,7 @@ X.O
 #include <iostream>
 #include <string>
 
-std::string enter_line(int n) {
+std::string enter_line (int n) {
 	std::string str;
 	std::cout << "Enter the line number " << n << ": ";
 	std::cin >> str;
@@ -73,6 +73,14 @@ std::string enter_line(int n) {
 	return str;
 }
 
+bool checking_playing_field(std::string line1, std::string line2, std::string line3) {
+	return false;
+}
+
+void who_won(std::string line1, std::string line2, std::string line3) {
+	std::cout << "won.";
+	return;
+}
 
 int main() {
 
@@ -80,5 +88,10 @@ int main() {
 	std::string secondLine = enter_line(2);
 	std::string thirdLine = enter_line(3);
 
-
+	if (checking_playing_field (firstLine, secondLine, thirdLine)) {
+		who_won (firstLine, secondLine, thirdLine);
+	}
+	else {
+		std::cout << "Incorrect.";
+	}
 }
