@@ -62,6 +62,7 @@ X.O
 #include <iostream>
 #include <string>
 
+// функция ввода входных данных
 std::string enter_line (int n) {
 	std::string str;
 	std::cout << "Enter the line number " << n << ": ";
@@ -73,11 +74,31 @@ std::string enter_line (int n) {
 	return str;
 }
 
+//фунция получения символа по его координатам
+char get_symbol_by_coordinates(std::string line1, std::string line2, std::string line3, int x, int y) {
+	x--;
+	if (y == 1) {
+		return line1[x];
+	}
+	if (y == 2) {
+		return line2[x];
+	}
+	if (y == 3) {
+		return line3[x];
+	}
+}
+
+//функция проверки игрового поля
 bool checking_playing_field(std::string line1, std::string line2, std::string line3) {
+
+
+
 	return false;
 }
 
+//функция определения победителя
 void who_won(std::string line1, std::string line2, std::string line3) {
+	
 	std::cout << "won.";
 	return;
 }
@@ -94,4 +115,8 @@ int main() {
 	else {
 		std::cout << "Incorrect.";
 	}
+
+	std::cout << std::endl << get_symbol_by_coordinates(firstLine, secondLine, thirdLine, 3, 3);
+
+
 }
