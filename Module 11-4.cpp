@@ -75,29 +75,38 @@ std::string enter_line (int n) {
 }
 
 //фунция получения символа по его координатам
-char get_symbol_by_coordinates(std::string line1, std::string line2, std::string line3, int x, int y) {
-	x--;
-	if (y == 1) {
-		return line1[x];
-	}
-	if (y == 2) {
-		return line2[x];
-	}
-	if (y == 3) {
-		return line3[x];
-	}
+char get_symbol_by_coordinates(std::string str, int x, int y) {
+	int position = ((y - 1) * 3 + x) - 1;
+	return str[position];
 }
 
 //функция проверки игрового поля
-bool checking_playing_field(std::string line1, std::string line2, std::string line3) {
+bool checking_playing_field(std::string str) {
+	int XChar = 0;
+	int OChar = 0;
 
+	//подсчитываем количество Х и О, и одновреммено проверяем что все символы правильные
+	for (int i = 0; i < str.length() - 1; i++) {
+		if (str[i] == 'X') {
+			XChar++;
+		}
+		else if (str[i] == 'O') {
+			OChar++;
+		}
+		else if (str[i] != '.') {
+			return false;
+		}
+	}
 
-
-	return false;
+	//при любом варианте О столько же сколько Х, или на один меньше
+	if ((XChar == OChar) || ((XChar - 1) == OChar)) {
+		return true;
+	}
+return false;
 }
 
 //функция определения победителя
-void who_won(std::string line1, std::string line2, std::string line3) {
+void who_won(std::string str) {
 	
 	std::cout << "won.";
 	return;
@@ -105,18 +114,19 @@ void who_won(std::string line1, std::string line2, std::string line3) {
 
 int main() {
 
-	std::string firstLine = enter_line(1);
-	std::string secondLine = enter_line(2);
-	std::string thirdLine = enter_line(3);
+	std::string playingField = enter_line(1);
+	playingField += enter_line(2);
+	playingField += enter_line(3);
 
-	if (checking_playing_field (firstLine, secondLine, thirdLine)) {
-		who_won (firstLine, secondLine, thirdLine);
+	
+	if (checking_playing_field (playingField)) {
+		who_won (playingField);
 	}
 	else {
 		std::cout << "Incorrect.";
 	}
 
-	std::cout << std::endl << get_symbol_by_coordinates(firstLine, secondLine, thirdLine, 3, 3);
+	std::cout << std::endl << playingField << std::endl << get_symbol_by_coordinates(playingField, 1, 2);
 
 
 }
