@@ -102,6 +102,7 @@ bool checking_playing_field(std::string str) {
 	if ((XChar == OChar) || ((XChar - 1) == OChar)) {
 		return true;
 	}
+	
 return false;
 }
 
