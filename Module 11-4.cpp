@@ -80,6 +80,24 @@ char get_symbol_by_coordinates(std::string str, int x, int y) {
 	return str[position];
 }
 
+//функция определения победителя в строке
+char who_won_in_string(std::string str) {
+	
+	return '.';
+}
+
+//функция получения линии по её номеру
+std::string get_line(std::string str, int n) {
+
+	return "...";
+}
+
+//функция получения колонки по её номеру
+std::string get_column(std::string str, int n) {
+
+	return "...";
+}
+
 //функция проверки игрового поля
 bool checking_playing_field(std::string str) {
 	int XChar = 0;
@@ -108,7 +126,53 @@ return false;
 
 //функция определения победителя
 void who_won(std::string str) {
-	
+	int Xwon = 0;
+	int Owon = 0;
+	std::string diagonal1 = "";
+	std::string diagonal2 = "";
+
+	for (int i = 1; i <= 3; i++) {
+		//получаем линию и колонку
+		std::string line = get_line(str,i);
+		std::string column = get_column(str, i);
+
+		//опрделяем есть ли победитель в линии или колонке
+		if (who_won_in_string(line) == 'X') {
+			Xwon++;
+		}
+		if (who_won_in_string(line) == 'O') {
+			Owon++;
+		}
+		if (who_won_in_string(column) == 'X') {
+			Xwon++;
+		}
+		if (who_won_in_string(column) == 'O') {
+			Owon++;
+		}
+		diagonal1 += get_symbol_by_coordinates(str, i, i);
+		diagonal2 += get_symbol_by_coordinates(str, i, 4 - i);
+	}
+
+	//опрделяем есть ли победитель в первой диагонали
+	if (who_won_in_string(diagonal1) == 'X') {
+		Xwon++;
+	}
+	if (who_won_in_string(diagonal1) == 'O') {
+		Owon++;
+	}
+
+	//опрделяем есть ли победитель во второй диагонали
+	if (who_won_in_string(diagonal2) == 'X') {
+		Xwon++;
+	}
+	if (who_won_in_string(diagonal2) == 'O') {
+		Owon++;
+	}
+
+	if (Xwon == 0 && Owon == 0) {
+		std::cout << "Nobody.";
+		return;
+	}
 	std::cout << "won.";
 	return;
 }
