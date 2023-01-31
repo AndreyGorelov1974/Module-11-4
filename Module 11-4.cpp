@@ -99,40 +99,39 @@ std::string get_line(std::string str, int n) {
 
 //функция получения колонки по её номеру
 std::string get_column(std::string str, int n) {
+	std::string result;
 	n--;
-	return "" + str[n] + str[n + 3] + str[n + 6];
+	for (int i = 0; i <= 6; i += 3) {
+		result += str[n + i];
+	}
+	
+	return  result;
 }
 
 //функция проверки игрового поля
 bool checking_playing_field(std::string str) {
-	int XChar = 0;
-	int OChar = 0;
+	
+	//проверяем что все символы допустимые
+	std::string correct = "XO.";
 
-	//подсчитываем количество Х и О, и одновреммено проверяем что все символы правильные
 	for (int i = 0; i < str.length() - 1; i++) {
-		if (str[i] == 'X') {
-			XChar++;
-		}
-		else if (str[i] == 'O') {
-			OChar++;
-		}
-		else if (str[i] != '.') {
+		if (correct.find(str[i]) == std::string::npos) {
 			return false;
 		}
 	}
 
-	//при любом варианте О столько же сколько Х, или на один меньше
-	if ((XChar == OChar) || ((XChar - 1) == OChar)) {
-		return true;
-	}
-	
-return false;
+return true;
 }
 
 //функция определения победителя
 void who_won(std::string str) {
 	int Xwon = 0;
 	int Owon = 0;
+	// подсчитываем количество X и О
+	int XChar = std::count(str.begin(), str.end(), 'X');
+	int OChar = std::count(str.begin(), str.end(), 'O');
+
+	
 	std::string diagonal1 = "";
 	std::string diagonal2 = "";
 
@@ -180,15 +179,14 @@ void who_won(std::string str) {
 		Owon++;
 	}
 
-	if (Xwon == 0 && Owon == 0) {
+	
+	if ((Xwon == 0 && Owon == 0) && ((XChar == OChar) || ((XChar - 1) == OChar))) {
 		std::cout << "Nobody.";
 		return;
-	}
-	if (Xwon == 1 && Owon == 0) {
+	}else if (Xwon == 1 && Owon == 0 && (XChar - 1) == OChar) {
 		std::cout << "Petya won.";
 		return;
-	}
-	if (Xwon == 0 && Owon == 1) {
+	}else if (Xwon == 0 && Owon == 1 && XChar == OChar) {
 		std::cout << "Vanya won.";
 		return;
 	}
