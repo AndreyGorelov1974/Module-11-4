@@ -169,8 +169,6 @@ void who_won(std::string str) {
 		Owon++;
 	}
 
-	Owon = 1; Xwon = 0;
-
 	if (Xwon == 0 && Owon == 0) {
 		std::cout << "Nobody.";
 		return;
