@@ -93,7 +93,7 @@ char who_won_in_string(std::string str) {
 
 //функция получения линии по её номеру
 std::string get_line(std::string str, int n) {
-	n--;
+	n = 3 * --n;
 	return str.substr(n,3);
 }
 
@@ -141,6 +141,9 @@ void who_won(std::string str) {
 		std::string line = get_line(str,i);
 		std::string column = get_column(str, i);
 
+		std::cout << i << line << " " << column << std::endl;
+
+
 		//опрделяем есть ли победитель в линии или колонке
 		if (who_won_in_string(line) == 'X') {
 			Xwon++;
@@ -157,6 +160,9 @@ void who_won(std::string str) {
 		diagonal1 += get_symbol_by_coordinates(str, i, i);
 		diagonal2 += get_symbol_by_coordinates(str, i, 4 - i);
 	}
+
+	std::cout << "diag " << diagonal1 << " " << diagonal2 << std::endl;
+
 
 	//опрделяем есть ли победитель в первой диагонали
 	if (who_won_in_string(diagonal1) == 'X') {
