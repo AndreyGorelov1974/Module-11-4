@@ -61,6 +61,7 @@ X.O
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 // функция ввода входных данных
 std::string enter_line (int n) {
@@ -82,20 +83,24 @@ char get_symbol_by_coordinates(std::string str, int x, int y) {
 
 //функция определения победителя в строке
 char who_won_in_string(std::string str) {
-	
-	return 'X';
+	if (std::search_n(str.cbegin(), str.cend(), 3, 'X') != str.cend()) {
+		return 'X';
+	}
+	if (std::search_n(str.cbegin(), str.cend(), 3, 'O') != str.cend()) {
+		return 'O';
+	}
 }
 
 //функция получения линии по её номеру
 std::string get_line(std::string str, int n) {
-
-	return "...";
+	n--;
+	return str.substr(n,3);
 }
 
 //функция получения колонки по её номеру
 std::string get_column(std::string str, int n) {
-
-	return "...";
+	n--;
+	return "" + str[n] + str[n + 3] + str[n + 6];
 }
 
 //функция проверки игрового поля
@@ -200,7 +205,10 @@ int main() {
 		std::cout << "Incorrect.";
 	}
 
-	std::cout << std::endl << playingField << std::endl << get_symbol_by_coordinates(playingField, 1, 2);
+	if (std::search_n(playingField.cbegin(), playingField.cend(), 3, 'O') != playingField.cend()) {
+		std::cout << std::endl << playingField << std::endl;
+
+	}
 
 
 }
