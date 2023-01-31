@@ -83,7 +83,7 @@ char get_symbol_by_coordinates(std::string str, int x, int y) {
 //функция определения победителя в строке
 char who_won_in_string(std::string str) {
 	
-	return '.';
+	return 'X';
 }
 
 //функция получения линии по её номеру
@@ -169,11 +169,22 @@ void who_won(std::string str) {
 		Owon++;
 	}
 
+	Owon = 1; Xwon = 0;
+
 	if (Xwon == 0 && Owon == 0) {
 		std::cout << "Nobody.";
 		return;
 	}
-	std::cout << "won.";
+	if (Xwon == 1 && Owon == 0) {
+		std::cout << "Petya won.";
+		return;
+	}
+	if (Xwon == 0 && Owon == 1) {
+		std::cout << "Vanya won.";
+		return;
+	}
+
+	std::cout << "Incorrect.";
 	return;
 }
 
