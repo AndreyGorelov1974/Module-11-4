@@ -130,7 +130,6 @@ void who_won(std::string str) {
 	// подсчитываем количество X и О
 	int XChar = std::count(str.begin(), str.end(), 'X');
 	int OChar = std::count(str.begin(), str.end(), 'O');
-
 	
 	std::string diagonal1 = "";
 	std::string diagonal2 = "";
@@ -139,9 +138,6 @@ void who_won(std::string str) {
 		//получаем линию и колонку
 		std::string line = get_line(str,i);
 		std::string column = get_column(str, i);
-
-		std::cout << i << line << " " << column << std::endl;
-
 
 		//опрделяем есть ли победитель в линии или колонке
 		if (who_won_in_string(line) == 'X') {
@@ -156,12 +152,11 @@ void who_won(std::string str) {
 		if (who_won_in_string(column) == 'O') {
 			Owon++;
 		}
+
+		//получаем две диагонали
 		diagonal1 += get_symbol_by_coordinates(str, i, i);
 		diagonal2 += get_symbol_by_coordinates(str, i, 4 - i);
 	}
-
-	std::cout << "diag " << diagonal1 << " " << diagonal2 << std::endl;
-
 
 	//опрделяем есть ли победитель в первой диагонали
 	if (who_won_in_string(diagonal1) == 'X') {
@@ -179,7 +174,7 @@ void who_won(std::string str) {
 		Owon++;
 	}
 
-	
+	//условия победы и ничьей так же зависят от количества Х и О
 	if ((Xwon == 0 && Owon == 0) && ((XChar == OChar) || ((XChar - 1) == OChar))) {
 		std::cout << "Nobody.";
 		return;
@@ -200,19 +195,11 @@ int main() {
 	std::string playingField = enter_line(1);
 	playingField += enter_line(2);
 	playingField += enter_line(3);
-
-	
+		
 	if (checking_playing_field (playingField)) {
 		who_won (playingField);
 	}
 	else {
 		std::cout << "Incorrect.";
 	}
-
-	if (std::search_n(playingField.cbegin(), playingField.cend(), 3, 'O') != playingField.cend()) {
-		std::cout << std::endl << playingField << std::endl;
-
-	}
-
-
 }
