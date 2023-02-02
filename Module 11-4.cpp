@@ -89,6 +89,7 @@ char who_won_in_string(std::string str) {
 	if (std::search_n(str.cbegin(), str.cend(), 3, 'O') != str.cend()) {
 		return 'O';
 	}
+	return '.';
 }
 
 //функция получения линии по её номеру
